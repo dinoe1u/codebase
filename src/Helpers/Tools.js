@@ -251,6 +251,25 @@ const isUrlValid = url => {
   else return true;
 };
 
+const isEmail = elem => {
+  var regexp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if (regexp.test(elem.value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const isStrongPassword = (elem) => {
+  var regx = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+  if (regx.test(elem.value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
 const formatNotifBadge = count => {
   if (count > 99) {
     return `99+`;
@@ -278,4 +297,6 @@ export default {
   formatNotifBadge,
   videoExt,
   fromatPrayerRequestTime,
+  isEmail,
+  isStrongPassword
 };

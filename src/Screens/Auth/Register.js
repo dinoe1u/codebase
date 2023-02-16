@@ -9,7 +9,7 @@ import { Images, Colors } from '../../CommonConfig';
 import { ThemeContext } from '../../Components/Hooks/ThemeProvider';
 
 // EITHER WE CAN USE NAVIGATION FROM HERE IF COMPONENT IS NOT IMPORTED INTO NAVIGATION FILE
-import { Popup } from '../../Helpers';
+import { Popup, Tools } from '../../Helpers';
 import Loader from '../../Components/Common/Loader';
 import { AfterInteractions } from '../../Components/Global/AfterInteractions';
 
@@ -31,8 +31,12 @@ const Register = ({ navigation, route }) => {
     // --------------- LIFECYCLE ---------------
     const handleSubmitPress = () => {
         setErrortext('');
-        if (!userEmail) {
+        if (!userEmail.trim()) {
             showAlert('Please fill Email');
+            return;
+        }
+        if (!Tools.isEmail(userEmail)) {
+            showAlert('Please enter valid Email');
             return;
         }
         if (!userPassword) {
